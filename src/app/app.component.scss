@@ -9,3 +9,13 @@
   border: 1px solid black;
   padding: 20px;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
