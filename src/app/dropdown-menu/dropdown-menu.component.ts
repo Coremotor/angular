@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {TTrigger} from "src/app/types";
 
 @Component({
   selector: 'app-dropdown-menu',
@@ -6,9 +7,9 @@ import {Component, Input, OnInit} from '@angular/core';
     <p>DropDown</p>
     <div class="wrapper">
       <app-button
-        (click)="trigger === 'click' && onBtnClick()"
-        (mouseenter)="trigger === 'hover' && onMouseEnter()"
-        (mouseleave)="trigger === 'hover' && onMouseLeave()"
+        (click)="onBtnClick()"
+        (mouseenter)="onMouseEnter()"
+        (mouseleave)="onMouseLeave()"
         color="primary"
         size="default">
 
@@ -36,19 +37,25 @@ import {Component, Input, OnInit} from '@angular/core';
   ]
 })
 export class DropdownMenuComponent implements OnInit {
-  @Input() trigger: 'hover' | 'click' = "hover"
+  @Input() trigger: TTrigger = "hover"
 
   isOpen: boolean = false
 
   onBtnClick(): void {
-    this.isOpen = !this.isOpen
+    if (this.trigger === 'click') {
+      this.isOpen = !this.isOpen
+    }
   }
 
   onMouseEnter(): void {
-    this.isOpen = true
+    if (this.trigger === 'hover') {
+      this.isOpen = true
+    }
   }
   onMouseLeave(): void {
-    this.isOpen = false
+    if (this.trigger === 'hover') {
+      this.isOpen = false
+    }
   }
 
   constructor() { }

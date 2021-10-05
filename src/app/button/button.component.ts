@@ -5,7 +5,7 @@ import {TButtonColor, TButtonSize} from "src/app/types";
   selector: 'app-button',
   template: `
     <button
-      [attr.disabled]="buttonIsDisabled"
+      [attr.disabled]="isDisabled ? '' : null"
       [style.cursor]="isActive ? 'auto' : 'pointer'"
       [ngClass]="calculateClasses"
     >
@@ -55,10 +55,10 @@ import {TButtonColor, TButtonSize} from "src/app/types";
 })
 
 export class ButtonComponent implements OnInit, OnChanges {
-  @Input() color?: TButtonColor = "default"
-  @Input() size?: TButtonSize = "default"
-  @Input() isActive?: boolean = false
-  @Input() isDisabled?: boolean = false
+  @Input() color: TButtonColor = "default"
+  @Input() size: TButtonSize = "default"
+  @Input() isActive: boolean = false
+  @Input() isDisabled: boolean = false
 
   buttonColor: TButtonColor = this.color || "default"
   buttonSize: TButtonSize = this.size || "default"
@@ -75,10 +75,6 @@ export class ButtonComponent implements OnInit, OnChanges {
       'large-size': this.buttonSize === 'large',
       'small-size': this.buttonSize === 'small',
     }
-  }
-
-  get buttonIsDisabled(): string | null {
-    return this.isDisabled ? '' : null
   }
 
   ngOnChanges(): void {
