@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TTrigger} from "src/app/types";
 
 @Component({
@@ -36,7 +36,7 @@ import {TTrigger} from "src/app/types";
     `
   ]
 })
-export class DropdownMenuComponent implements OnInit {
+export class DropdownMenuComponent {
   @Input() trigger: TTrigger = "hover"
 
   isOpen: boolean = false
@@ -59,8 +59,4 @@ export class DropdownMenuComponent implements OnInit {
   }
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

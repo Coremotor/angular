@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip',
@@ -10,11 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class TooltipComponent implements OnInit {
+export class TooltipComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

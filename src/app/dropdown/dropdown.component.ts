@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -12,11 +12,7 @@ import { Component, OnInit } from '@angular/core';
     '.container {border: 1px solid black; padding: 20px;}'
   ]
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

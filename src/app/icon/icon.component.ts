@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-icon',
@@ -10,11 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class IconComponent implements OnInit {
+export class IconComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

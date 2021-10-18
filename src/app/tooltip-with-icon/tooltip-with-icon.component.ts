@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip-with-icon',
@@ -13,11 +13,7 @@ import { Component, OnInit } from '@angular/core';
     '.container {border: 1px solid black; padding: 20px;}'
   ]
 })
-export class TooltipWithIconComponent implements OnInit {
+export class TooltipWithIconComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

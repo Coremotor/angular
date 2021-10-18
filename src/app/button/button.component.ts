@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {TButtonColor, TButtonSize, TToggleButton} from "src/app/types";
 
 @Component({
@@ -58,7 +58,7 @@ import {TButtonColor, TButtonSize, TToggleButton} from "src/app/types";
   ]
 })
 
-export class ButtonComponent implements OnInit, OnChanges {
+export class ButtonComponent implements OnChanges {
   @Input() color: TButtonColor = "default"
   @Input() size: TButtonSize = "default"
   @Input() isActive: boolean = false
@@ -99,8 +99,6 @@ export class ButtonComponent implements OnInit, OnChanges {
   }
 
   constructor() { }
-
-  ngOnInit(): void {}
 }
 
 

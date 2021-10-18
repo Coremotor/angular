@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductProperties, TToggleButton} from "src/app/types";
 
 @Component({
@@ -25,7 +25,7 @@ import {ProductProperties, TToggleButton} from "src/app/types";
     `
   ]
 })
-export class ToggleComponent implements OnInit {
+export class ToggleComponent {
   @Input() buttons: TToggleButton[] = []
   @Output() changed: EventEmitter<string> = new EventEmitter()
 
@@ -37,8 +37,4 @@ export class ToggleComponent implements OnInit {
   }
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

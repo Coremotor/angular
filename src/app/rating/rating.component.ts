@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -10,11 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class RatingComponent implements OnInit {
+export class RatingComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

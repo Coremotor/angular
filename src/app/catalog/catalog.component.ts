@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {products} from "src/data/products.data";
 import {ProductProperties, TItemInCart, TProduct, TToggleButton} from "src/app/types";
 import {buttons} from "src/data/toggleButtons.data";
@@ -29,7 +29,7 @@ import {buttons} from "src/data/toggleButtons.data";
     `
   ]
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent {
   productsList: TProduct[] = products
   inCart: TItemInCart[] = []
   toggleButtons: TToggleButton[] = buttons
@@ -64,9 +64,4 @@ export class CatalogComponent implements OnInit {
   }
 
   constructor() { }
-
-
-  ngOnInit(): void {
-  }
-
 }

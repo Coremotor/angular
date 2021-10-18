@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {TItemInCart} from "src/app/types";
 
 @Component({
@@ -120,7 +120,7 @@ import {TItemInCart} from "src/app/types";
     `
   ]
 })
-export class CartComponent implements OnInit, OnChanges {
+export class CartComponent implements OnChanges {
   @Input() inCart: TItemInCart[] = []
   show: boolean = false
 
@@ -171,8 +171,4 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
