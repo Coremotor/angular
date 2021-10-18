@@ -9,11 +9,8 @@ import { Component } from '@angular/core';
       <app-tooltip></app-tooltip>
     </div>
   `,
-  styles: [
-    '.container {border: 1px solid black; padding: 20px;}'
-  ]
+  styles: ['.container {border: 1px solid black; padding: 20px;}'],
 })
 export class TooltipWithIconComponent {
-
-  constructor() { }
+  constructor() {}
 }

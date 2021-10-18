@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {TTrigger} from "src/app/types";
+import { Component, Input } from '@angular/core';
+import { TTrigger } from 'src/app/types';
 
 @Component({
   selector: 'app-dropdown-menu',
@@ -11,10 +11,13 @@ import {TTrigger} from "src/app/types";
         (mouseenter)="onMouseEnter()"
         (mouseleave)="onMouseLeave()"
         color="primary"
-        size="default">
-
+        size="default"
+      >
       </app-button>
-      <app-menu [style.display]="isOpen ? 'flex' : 'none'" class="menu"></app-menu>
+      <app-menu
+        [style.display]="isOpen ? 'flex' : 'none'"
+        class="menu"
+      ></app-menu>
     </div>
   `,
   styles: [
@@ -33,30 +36,30 @@ import {TTrigger} from "src/app/types";
         border: 1px solid black;
         top: 80px;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class DropdownMenuComponent {
-  @Input() trigger: TTrigger = "hover"
+  @Input() trigger: TTrigger = 'hover';
 
-  isOpen: boolean = false
+  isOpen: boolean = false;
 
   onBtnClick(): void {
     if (this.trigger === 'click') {
-      this.isOpen = !this.isOpen
+      this.isOpen = !this.isOpen;
     }
   }
 
   onMouseEnter(): void {
     if (this.trigger === 'hover') {
-      this.isOpen = true
+      this.isOpen = true;
     }
   }
   onMouseLeave(): void {
     if (this.trigger === 'hover') {
-      this.isOpen = false
+      this.isOpen = false;
     }
   }
 
-  constructor() { }
+  constructor() {}
 }

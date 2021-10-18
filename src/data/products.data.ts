@@ -1,4 +1,4 @@
-import {TProduct} from "src/app/types";
+import { TProduct } from 'src/app/types';
 
 export const products: TProduct[] = [
   {
@@ -7,7 +7,7 @@ export const products: TProduct[] = [
     description: 'Вкусный пирожок',
     price: 100,
     inStock: true,
-    discount: 0
+    discount: 0,
   },
   {
     id: '2',
@@ -15,7 +15,7 @@ export const products: TProduct[] = [
     description: 'Не вкусный мухомор',
     price: 10,
     inStock: true,
-    discount: 0.10
+    discount: 0.1,
   },
   {
     id: '3',
@@ -23,7 +23,7 @@ export const products: TProduct[] = [
     description: 'Красная малина',
     price: 1000,
     inStock: true,
-    discount: 0.23
+    discount: 0.23,
   },
   {
     id: '4',
@@ -31,7 +31,7 @@ export const products: TProduct[] = [
     description: 'Гнилая клубника',
     price: 2,
     inStock: false,
-    discount: 0
+    discount: 0,
   },
   {
     id: '5',
@@ -39,7 +39,7 @@ export const products: TProduct[] = [
     description: 'Грязная картошка',
     price: 300,
     inStock: true,
-    discount: 0.11
+    discount: 0.11,
   },
   {
     id: '6',
@@ -47,7 +47,7 @@ export const products: TProduct[] = [
     description: 'Сладкая морковка',
     price: 563,
     inStock: false,
-    discount: 0
+    discount: 0,
   },
   {
     id: '7',
@@ -55,7 +55,7 @@ export const products: TProduct[] = [
     description: 'Вегетарианский шашлык',
     price: 666,
     inStock: true,
-    discount: 0.90
+    discount: 0.9,
   },
   {
     id: '8',
@@ -63,7 +63,7 @@ export const products: TProduct[] = [
     description: 'Армейская тушенка',
     price: 136,
     inStock: true,
-    discount: 0.11
+    discount: 0.11,
   },
   {
     id: '9',
@@ -71,7 +71,7 @@ export const products: TProduct[] = [
     description: 'Яйца куриные',
     price: 540,
     inStock: true,
-    discount: 0
+    discount: 0,
   },
   {
     id: '0',
@@ -79,6 +79,6 @@ export const products: TProduct[] = [
     description: 'Сернурское молоко',
     price: 3722,
     inStock: false,
-    discount: 0
+    discount: 0,
   },
-]
+];

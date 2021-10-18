@@ -1,10 +1,9 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ProductProperties, TToggleButton} from "src/app/types";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ProductProperties, TToggleButton } from 'src/app/types';
 
 @Component({
   selector: 'app-toggle',
   template: `
-
     <ng-template ngFor let-button [ngForOf]="buttons">
       <app-button
         *ngIf="button.value"
@@ -20,21 +19,25 @@ import {ProductProperties, TToggleButton} from "src/app/types";
   `,
   styles: [
     `
-      .button { margin-right: 20px;}
-      .button:last-child { margin-right: 0;}
-    `
-  ]
+      .button {
+        margin-right: 20px;
+      }
+      .button:last-child {
+        margin-right: 0;
+      }
+    `,
+  ],
 })
 export class ToggleComponent {
-  @Input() buttons: TToggleButton[] = []
-  @Output() changed: EventEmitter<string> = new EventEmitter()
+  @Input() buttons: TToggleButton[] = [];
+  @Output() changed: EventEmitter<string> = new EventEmitter();
 
-  buttonValue: string = ProductProperties.all
+  buttonValue: string = ProductProperties.all;
 
   onClick(value: string) {
-    this.changed.emit(value)
-    this.buttonValue = value
+    this.changed.emit(value);
+    this.buttonValue = value;
   }
 
-  constructor() { }
+  constructor() {}
 }

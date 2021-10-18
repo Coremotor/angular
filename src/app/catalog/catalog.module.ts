@@ -1,23 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CatalogComponent } from './catalog.component';
-import { ProductCardModule } from "src/app/product-card/product-card.module";
-import {ToggleModule} from "src/app/toggle/toggle.module";
-import {CartModule} from "src/app/cart/cart.module";
-
+import { ProductCardModule } from 'src/app/product-card/product-card.module';
+import { ToggleModule } from 'src/app/toggle/toggle.module';
+import { CartModule } from 'src/app/cart/cart.module';
 
 @NgModule({
-  declarations: [
-    CatalogComponent
-  ],
-  imports: [
-    CommonModule,
-    ProductCardModule,
-    ToggleModule,
-    CartModule
-  ],
-  exports: [
-    CatalogComponent
-  ],
+  declarations: [CatalogComponent],
+  imports: [CommonModule, ProductCardModule, ToggleModule, CartModule],
+  exports: [CatalogComponent],
 })
-export class CatalogModule { }
+export class CatalogModule {}

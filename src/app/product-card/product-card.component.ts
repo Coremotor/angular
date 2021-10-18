@@ -1,20 +1,18 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TProduct} from "src/app/types";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TProduct } from 'src/app/types';
 
 @Component({
   selector: 'app-product-card',
   template: `
-    <div class="name">{{product.name}}</div>
-    <div class="description">{{product.description}}</div>
+    <div class="name">{{ product.name }}</div>
+    <div class="description">{{ product.description }}</div>
     <div class="price-wrapper">
-      <span
-        class="price"
-        [ngClass]="{'line-through': product.discount}"
-      >{{product.price | currency:'RUB'}}</span>
-      <span
-        *ngIf="product.discount"
-        class="price"
-      >{{priceWithDiscount | currency:'RUB'}}</span>
+      <span class="price" [ngClass]="{ 'line-through': product.discount }">{{
+        product.price | currency: 'RUB'
+      }}</span>
+      <span *ngIf="product.discount" class="price">{{
+        priceWithDiscount | currency: 'RUB'
+      }}</span>
     </div>
     <app-button
       (click)="onButtonClick()"
@@ -24,15 +22,16 @@ import {TProduct} from "src/app/types";
       [color]="product.inStock ? 'primary' : 'default'"
       size="small"
     ></app-button>
-    <div
-      [style.color]="!product.inStock && 'red'"
-      class="stock"
-    >{{product.inStock ? 'В наличии' : 'Нет на складе'}}</div>
+    <div [style.color]="!product.inStock && 'red'" class="stock">
+      {{ product.inStock ? 'В наличии' : 'Нет на складе' }}
+    </div>
     <div
       *ngIf="product.discount"
       [style.color]="product.discount && 'green'"
       class="discount"
-    >Скидка - {{product.discount | percent}}</div>
+    >
+      Скидка - {{ product.discount | percent }}
+    </div>
   `,
   styles: [
     `
@@ -66,21 +65,20 @@ import {TProduct} from "src/app/types";
       .line-through {
         text-decoration: line-through;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class ProductCardComponent {
-  @Input() product!: TProduct
-  @Output() addInCart: EventEmitter<TProduct> = new EventEmitter()
+  @Input() product!: TProduct;
+  @Output() addInCart: EventEmitter<TProduct> = new EventEmitter();
 
   public onButtonClick() {
-    this.addInCart.emit(this.product)
+    this.addInCart.emit(this.product);
   }
 
   get priceWithDiscount() {
-    return this.product.price - this.product.price * this.product.discount
+    return this.product.price - this.product.price * this.product.discount;
   }
 
-  constructor() {
-  }
+  constructor() {}
 }

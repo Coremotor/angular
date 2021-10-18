@@ -1,5 +1,11 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {TButtonColor, TButtonSize, TToggleButton} from "src/app/types";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+} from '@angular/core';
+import { TButtonColor, TButtonSize, TToggleButton } from 'src/app/types';
 
 @Component({
   selector: 'app-button',
@@ -10,7 +16,7 @@ import {TButtonColor, TButtonSize, TToggleButton} from "src/app/types";
       [ngClass]="calculateClasses"
       (click)="onClick()"
     >
-      {{item.label || text}}
+      {{ item.label || text }}
     </button>
   `,
   styles: [
@@ -34,8 +40,8 @@ import {TButtonColor, TButtonSize, TToggleButton} from "src/app/types";
         color: white;
       }
       .success-color {
-        border: 1px solid #00FF00;
-        background-color: #00FF00;
+        border: 1px solid #00ff00;
+        background-color: #00ff00;
         color: white;
       }
       .warning-color {
@@ -54,26 +60,25 @@ import {TButtonColor, TButtonSize, TToggleButton} from "src/app/types";
         padding: 10px;
         font-size: 12px;
       }
-    `
-  ]
+    `,
+  ],
 })
-
 export class ButtonComponent implements OnChanges {
-  @Input() color: TButtonColor = "default"
-  @Input() size: TButtonSize = "default"
-  @Input() isActive: boolean = false
-  @Input() isDisabled: boolean = false
-  @Input() item: TToggleButton = {label: '', value: ''}
-  @Input() text?: string = 'Кнопка'
+  @Input() color: TButtonColor = 'default';
+  @Input() size: TButtonSize = 'default';
+  @Input() isActive: boolean = false;
+  @Input() isDisabled: boolean = false;
+  @Input() item: TToggleButton = { label: '', value: '' };
+  @Input() text?: string = 'Кнопка';
 
-  @Output() changed: EventEmitter<string> = new EventEmitter()
+  @Output() changed: EventEmitter<string> = new EventEmitter();
 
-  buttonColor: TButtonColor = this.color || "default"
-  buttonSize: TButtonSize = this.size || "default"
+  buttonColor: TButtonColor = this.color || 'default';
+  buttonSize: TButtonSize = this.size || 'default';
 
   get calculateClasses() {
     return {
-      'button': true,
+      button: true,
       'default-color': this.buttonColor === 'default',
       'primary-color': this.buttonColor === 'primary',
       'accent-color': this.buttonColor === 'accent',
@@ -82,23 +87,21 @@ export class ButtonComponent implements OnChanges {
       'default-size': this.buttonSize === 'default',
       'large-size': this.buttonSize === 'large',
       'small-size': this.buttonSize === 'small',
-    }
+    };
   }
 
   ngOnChanges(): void {
     if (this.color) {
-      this.buttonColor = this.color
+      this.buttonColor = this.color;
     }
     if (this.size) {
-      this.buttonSize = this.size
+      this.buttonSize = this.size;
     }
   }
 
   onClick() {
-    this.changed.emit(this.item.value)
+    this.changed.emit(this.item.value);
   }
 
-  constructor() { }
+  constructor() {}
 }
-
-

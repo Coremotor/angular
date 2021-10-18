@@ -8,11 +8,8 @@ import { Component } from '@angular/core';
       <app-button></app-button>
     </div>
   `,
-  styles: [
-    '.container {border: 1px solid black; padding: 20px;}'
-  ]
+  styles: ['.container {border: 1px solid black; padding: 20px;}'],
 })
 export class DropdownComponent {
-
-  constructor() { }
+  constructor() {}
 }
