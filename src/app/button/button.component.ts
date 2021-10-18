@@ -1,5 +1,5 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {TButtonColor, TButtonSize} from "src/app/types";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {TButtonColor, TButtonSize, TToggleButton} from "src/app/types";
 
 @Component({
   selector: 'app-button',
@@ -8,8 +8,9 @@ import {TButtonColor, TButtonSize} from "src/app/types";
       [attr.disabled]="isDisabled ? '' : null"
       [style.cursor]="isActive ? 'auto' : 'pointer'"
       [ngClass]="calculateClasses"
+      (click)="onClick()"
     >
-      Button
+      {{item.label || text}}
     </button>
   `,
   styles: [
@@ -18,26 +19,30 @@ import {TButtonColor, TButtonSize} from "src/app/types";
         border: none;
       }
       .default-color {
+        border: 1px solid black;
         background-color: white;
         color: black;
       }
       .primary-color {
+        border: 1px solid #4050b5;
         background-color: #4050b5;
         color: white;
       }
       .accent-color {
+        border: 1px solid #ff3f80;
         background-color: #ff3f80;
         color: white;
       }
       .success-color {
+        border: 1px solid #00FF00;
         background-color: #00FF00;
         color: white;
       }
       .warning-color {
+        border: 1px solid #f44335;
         background-color: #f44335;
         color: white;
       }
-
       .default-size {
         padding: 20px;
       }
@@ -49,7 +54,6 @@ import {TButtonColor, TButtonSize} from "src/app/types";
         padding: 10px;
         font-size: 12px;
       }
-
     `
   ]
 })
@@ -59,6 +63,10 @@ export class ButtonComponent implements OnInit, OnChanges {
   @Input() size: TButtonSize = "default"
   @Input() isActive: boolean = false
   @Input() isDisabled: boolean = false
+  @Input() item: TToggleButton = {label: '', value: ''}
+  @Input() text?: string = 'Кнопка'
+
+  @Output() changed: EventEmitter<string> = new EventEmitter()
 
   buttonColor: TButtonColor = this.color || "default"
   buttonSize: TButtonSize = this.size || "default"
@@ -86,7 +94,11 @@ export class ButtonComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor() {}
+  onClick() {
+    this.changed.emit(this.item.value)
+  }
+
+  constructor() { }
 
   ngOnInit(): void {}
 }
