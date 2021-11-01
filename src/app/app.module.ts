@@ -11,6 +11,9 @@ import { CatalogModule } from 'src/app/catalog/catalog.module';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import localeRuExtra from '@angular/common/locales/extra/ru';
+import { AppRoutingModule } from './app-routing.module';
+import {RouterModule} from "@angular/router";
+import { ProductModule } from './product/product.module';
 
 registerLocaleData(localeRu, 'ru', localeRuExtra);
 
@@ -24,6 +27,9 @@ registerLocaleData(localeRu, 'ru', localeRuExtra);
     ButtonModule,
     DropdownMenuModule,
     CatalogModule,
+    AppRoutingModule,
+    RouterModule,
+    ProductModule,
   ],
   providers: [{ provide: DEFAULT_CURRENCY_CODE, useValue: 'RUB' }],
   bootstrap: [AppComponent],

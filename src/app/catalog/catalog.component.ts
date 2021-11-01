@@ -7,6 +7,7 @@ import {
   TToggleButton,
 } from 'src/app/types';
 import { buttons } from 'src/data/toggleButtons.data';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -28,6 +29,7 @@ import { buttons } from 'src/data/toggleButtons.data';
         (addInCart)="addInCart($event)"
         *ngFor="let product of productsList"
         [product]="product"
+        [routerLink]="['/product', product.id]"
       ></app-product-card>
     </div>
 
@@ -54,6 +56,7 @@ export class CatalogComponent {
   productsList: TProduct[] = products;
   inCart: TItemInCart[] = [];
   toggleButtons: TToggleButton[] = buttons;
+  sort: string = ProductProperties.all
 
   addInCart(product: TProduct) {
     const item = this.inCart.find((p) => p.product.id === product.id);
@@ -90,5 +93,16 @@ export class CatalogComponent {
     this.inCart = value;
   }
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {
+    this.sort = this.route.snapshot.queryParams['sort']
+    if (this.sort === ProductProperties.all) {
+      this.productsList = products;
+    }
+    if (this.sort === ProductProperties.inStock) {
+      this.productsList = products.filter((p) => p.inStock);
+    }
+    if (this.sort === ProductProperties.withDiscount) {
+      this.productsList = products.filter((p) => p.discount);
+    }
+  }
 }

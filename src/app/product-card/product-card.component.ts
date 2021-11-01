@@ -15,7 +15,7 @@ import { TProduct } from 'src/app/types';
       }}</span>
     </div>
     <app-button
-      (click)="onButtonClick()"
+      (click)="onButtonClick($event)"
       text="В корзину"
       [isDisabled]="!product.inStock"
       [isActive]="!product.inStock"
@@ -39,10 +39,15 @@ import { TProduct } from 'src/app/types';
         min-width: 200px;
         border: 1px solid black;
         padding: 20px;
+        cursor: pointer;
         margin: 0 10px 10px 0;
+      }
+      :host:hover {
+        box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
       }
       .name {
         font-weight: bold;
+        cursor: pointer;
         margin-bottom: 10px;
       }
       .description {
@@ -72,7 +77,8 @@ export class ProductCardComponent {
   @Input() product!: TProduct;
   @Output() addInCart: EventEmitter<TProduct> = new EventEmitter();
 
-  public onButtonClick() {
+  public onButtonClick(event: MouseEvent) {
+    event.stopPropagation();
     this.addInCart.emit(this.product);
   }
 

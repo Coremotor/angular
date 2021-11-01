@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductProperties, TToggleButton } from 'src/app/types';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-toggle',
@@ -35,9 +36,12 @@ export class ToggleComponent {
   buttonValue: string = ProductProperties.all;
 
   onClick(value: string) {
+    this.router.navigate(['.'], {relativeTo: this.route, queryParams: {sort: value}})
     this.changed.emit(value);
     this.buttonValue = value;
   }
 
-  constructor() {}
+  constructor(private router: Router, private route: ActivatedRoute) {
+    this.buttonValue = this.route.snapshot.queryParams['sort']
+  }
 }
