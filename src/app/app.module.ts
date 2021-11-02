@@ -6,14 +6,13 @@ import { TooltipWithIconModule } from './tooltip-with-icon/tooltip-with-icon.mod
 import { DropdownModule } from './dropdown/dropdown.module';
 import { ButtonModule } from 'src/app/button/button.module';
 import { DropdownMenuModule } from 'src/app/dropdown-menu/dropdown-menu.module';
-import { CatalogModule } from 'src/app/catalog/catalog.module';
-
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import localeRuExtra from '@angular/common/locales/extra/ru';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ProductModule } from './product/product.module';
+import {MainModule} from "src/app/main/main.module";
 
 registerLocaleData(localeRu, 'ru', localeRuExtra);
 
@@ -29,6 +28,7 @@ registerLocaleData(localeRu, 'ru', localeRuExtra);
     AppRoutingModule,
     RouterModule,
     ProductModule,
+    MainModule
   ],
   providers: [{ provide: DEFAULT_CURRENCY_CODE, useValue: 'RUB' }],
   bootstrap: [AppComponent],

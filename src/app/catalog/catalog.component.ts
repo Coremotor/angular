@@ -29,7 +29,7 @@ import { ActivatedRoute } from '@angular/router';
         (addInCart)="addInCart($event)"
         *ngFor="let product of productsList"
         [product]="product"
-        [routerLink]="['/product', product.id]"
+        [routerLink]="['/products', product.id]"
       ></app-product-card>
     </div>
 
@@ -56,7 +56,7 @@ export class CatalogComponent {
   productsList: TProduct[] = products;
   inCart: TItemInCart[] = [];
   toggleButtons: TToggleButton[] = buttons;
-  sort: string = ProductProperties.all
+  sort: string = ProductProperties.all;
 
   addInCart(product: TProduct) {
     const item = this.inCart.find((p) => p.product.id === product.id);
@@ -94,7 +94,7 @@ export class CatalogComponent {
   }
 
   constructor(private route: ActivatedRoute) {
-    this.sort = this.route.snapshot.queryParams['sort']
+    this.sort = this.route.snapshot.queryParams['sort'];
     if (this.sort === ProductProperties.all) {
       this.productsList = products;
     }

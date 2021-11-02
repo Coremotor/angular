@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { CatalogComponent } from 'src/app/catalog/catalog.component';
-import { ProductComponent } from 'src/app/product/product.component';
 import { NotFoundComponent } from 'src/app/not-found/not-found.component';
+import { MainComponent } from 'src/app/main/main.component';
 
 // export const routes: Routes = [
 //   { path: '', component: CatalogComponent },
@@ -13,12 +12,14 @@ import { NotFoundComponent } from 'src/app/not-found/not-found.component';
 // ];
 
 export const routes: Routes = [
-  // { path: '', component: CatalogComponent },
+  { path: '', component: MainComponent },
   {
-    path: '',
+    path: 'products',
     loadChildren: () =>
       import('./catalog/catalog.module').then((m) => m.CatalogModule),
   },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: 'not-found' },
 ];
 
 @NgModule({
