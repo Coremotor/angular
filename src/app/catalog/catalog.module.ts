@@ -4,11 +4,19 @@ import { CatalogComponent } from './catalog.component';
 import { ProductCardModule } from 'src/app/product-card/product-card.module';
 import { ToggleModule } from 'src/app/toggle/toggle.module';
 import { CartModule } from 'src/app/cart/cart.module';
-import {RouterModule} from "@angular/router";
+import { RouterModule } from '@angular/router';
+import { CatalogRoutingModule } from 'src/app/catalog/catalog-routing.module';
 
 @NgModule({
   declarations: [CatalogComponent],
-  imports: [CommonModule, ProductCardModule, ToggleModule, CartModule, RouterModule],
+  imports: [
+    CommonModule,
+    ProductCardModule,
+    ToggleModule,
+    CartModule,
+    RouterModule,
+    CatalogRoutingModule,
+  ],
   exports: [CatalogComponent],
 })
 export class CatalogModule {}

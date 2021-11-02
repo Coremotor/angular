@@ -5,11 +5,20 @@ import { CatalogComponent } from 'src/app/catalog/catalog.component';
 import { ProductComponent } from 'src/app/product/product.component';
 import { NotFoundComponent } from 'src/app/not-found/not-found.component';
 
+// export const routes: Routes = [
+//   { path: '', component: CatalogComponent },
+//   { path: 'product/:id', component: ProductComponent },
+//   { path: 'not-found', component: NotFoundComponent },
+//   { path: '**', redirectTo: 'not-found' },
+// ];
+
 export const routes: Routes = [
-  { path: '', component: CatalogComponent },
-  { path: 'product/:id', component: ProductComponent },
-  { path: 'not-found', component: NotFoundComponent },
-  { path: '**', redirectTo: 'not-found' },
+  // { path: '', component: CatalogComponent },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./catalog/catalog.module').then((m) => m.CatalogModule),
+  },
 ];
 
 @NgModule({

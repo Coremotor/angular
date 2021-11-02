@@ -12,7 +12,7 @@ import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import localeRuExtra from '@angular/common/locales/extra/ru';
 import { AppRoutingModule } from './app-routing.module';
-import {RouterModule} from "@angular/router";
+import { RouterModule } from '@angular/router';
 import { ProductModule } from './product/product.module';
 
 registerLocaleData(localeRu, 'ru', localeRuExtra);
@@ -26,7 +26,6 @@ registerLocaleData(localeRu, 'ru', localeRuExtra);
     DropdownModule,
     ButtonModule,
     DropdownMenuModule,
-    CatalogModule,
     AppRoutingModule,
     RouterModule,
     ProductModule,
