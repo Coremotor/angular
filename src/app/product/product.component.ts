@@ -2,20 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { products } from 'src/data/products.data';
 import { TProduct } from 'src/app/types';
+import {CatalogService} from "src/app/services/catalog.service";
 
 @Component({
   selector: 'app-product',
+  providers: [CatalogService],
   template: `
-    <div *ngIf="getProduct" class="container">
-      <div class="text">Товар: {{ getProduct && getProduct.name }}</div>
+    <div *ngIf="catalogService.product" class="container">
+      <div class="text">Товар: {{ catalogService.product && catalogService.product.name }}</div>
       <div class="text">
-        Описание: {{ getProduct && getProduct.description }}
+        Описание: {{ catalogService.product && catalogService.product.description }}
       </div>
       <div class="text">
-        Цена: {{ getProduct && getProduct.price | currency: 'RUB' }}
+        Цена: {{ catalogService.product && catalogService.product.price | currency: 'RUB' }}
       </div>
       <div class="text">
-        Скидка: {{ getProduct && getProduct.discount | percent }}
+        Скидка: {{ catalogService.product && catalogService.product.discount | percent }}
       </div>
       <div class="text">
         Цена со скидкой: {{ priceWithDiscount | currency: 'RUB' }}
@@ -45,20 +47,17 @@ export class ProductComponent implements OnInit{
   public productId: string;
   products: TProduct[] = products;
 
-  get getProduct() {
-    return products.find((p) => p.id === this.productId);
-  }
-
   get priceWithDiscount() {
-    if (this.getProduct) {
+    if (this.catalogService.product) {
       return (
-        this.getProduct.price - this.getProduct.price * this.getProduct.discount
+        this.catalogService.product.price - this.catalogService.product.price * this.catalogService.product.discount
       );
     } else return 0;
   }
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, public catalogService: CatalogService) {
     this.productId = this.route.snapshot.params['id'];
+    this.catalogService.getProduct(this.productId)
   }
 
   redirect() {
@@ -66,7 +65,7 @@ export class ProductComponent implements OnInit{
   }
 
   ngOnInit() {
-    if (!this.getProduct) {
+    if (!this.catalogService.product) {
       this.redirect()
     }
   }

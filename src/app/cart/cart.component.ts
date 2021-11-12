@@ -1,24 +1,19 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import { TItemInCart } from 'src/app/types';
+import { Component } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
   template: `
-    <div class="wrapper" (click)="showCart()">
+    <div class="wrapper" (click)="cartService.toggleShowCart()">
       <div class="icon material-icons md-32">shopping_bag</div>
-      <span *ngIf="inCart.length > 0">{{ productsCount }}</span>
+      <span *ngIf="cartService.inCart.length > 0">{{ productsCount }}</span>
     </div>
-    <div *ngIf="show" class="cart">
-      <div class="icon material-icons close" (click)="showCart()">close</div>
+    <div *ngIf="cartService.show" class="cart">
+      <div class="icon material-icons close" (click)="cartService.toggleShowCart()">
+        close
+      </div>
 
-      <div class="item" *ngFor="let product of inCart">
+      <div class="item" *ngFor="let product of cartService.inCart">
         <span class="name">{{ product.product.name }}</span>
         <span class="count">{{ product.count }} шт.</span>
         <div class="price-wrapper">
@@ -33,7 +28,10 @@ import { TItemInCart } from 'src/app/types';
             >{{ product.product.price * product.count | currency }}</span
           >
         </div>
-        <div class="icon material-icons delete" (click)="delete(product)">
+        <div
+          class="icon material-icons delete"
+          (click)="cartService.delete(product)"
+        >
           delete
         </div>
       </div>
@@ -57,11 +55,13 @@ import { TItemInCart } from 'src/app/types';
 
       <app-button
         size="small"
-        (click)="checkout()"
+        (click)="cartService.checkout()"
         color="success"
         text="Оформить заказ"
       ></app-button>
-      <div class="clear" (click)="clear()">Очистить корзину</div>
+      <div class="clear" (click)="cartService.clearCart()">
+        Очистить корзину
+      </div>
     </div>
   `,
   styles: [
@@ -136,46 +136,20 @@ import { TItemInCart } from 'src/app/types';
     `,
   ],
 })
-export class CartComponent implements OnChanges {
-  @Input() inCart: TItemInCart[] = [];
-  show: boolean = false;
-
-  @Output() removeFromCart: EventEmitter<TItemInCart> = new EventEmitter();
-  @Output() clearCart: EventEmitter<[]> = new EventEmitter();
-
-  showCart() {
-    if (this.inCart.length > 0) {
-      this.show = !this.show;
-    }
-  }
-
-  clear() {
-    this.clearCart.emit([]);
-    this.showCart();
-  }
-
-  checkout() {
-    console.log('Заказ оформлен');
-    this.clear();
-  }
-
-  delete(item: TItemInCart) {
-    this.removeFromCart.emit(item);
-  }
-
+export class CartComponent {
   get productsCount() {
-    return this.inCart.reduce((acc, val) => acc + val.count, 0);
+    return this.cartService.inCart.reduce((acc, val) => acc + val.count, 0);
   }
 
   get totalPrice() {
-    return this.inCart.reduce(
+    return this.cartService.inCart.reduce(
       (acc, val) => acc + val.product.price * val.count,
       0
     );
   }
 
   get totalPriceWithDiscount() {
-    return this.inCart.reduce(
+    return this.cartService.inCart.reduce(
       (acc, val) =>
         acc +
         (val.product.discount
@@ -186,11 +160,5 @@ export class CartComponent implements OnChanges {
     );
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.inCart.length === 0) {
-      this.show = false;
-    }
-  }
-
-  constructor() {}
+  constructor(public cartService: CartService) {}
 }
