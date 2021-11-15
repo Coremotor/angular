@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {TItemInCart, TProduct} from "src/app/types";
+import { TItemInCart, TProduct } from 'src/app/types';
 
 @Injectable({
   providedIn: 'root',
@@ -32,18 +32,26 @@ export class CartService {
       (p) => p.product.id !== product.product.id
     );
     if (this.inCart.length === 0) {
-      this.show = false
+      this.show = false;
     }
   }
 
   clearCart() {
     this.inCart = [];
-    this.show = false
+    this.show = false;
   }
 
   checkout() {
     console.log('Заказ оформлен');
     this.clearCart();
+  }
+
+  getCart() {
+    return this.inCart;
+  }
+
+  getCount() {
+    return this.inCart.reduce((acc, val) => acc + val.count, 0);
   }
 
   constructor() {}

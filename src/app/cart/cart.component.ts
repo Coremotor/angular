@@ -6,14 +6,19 @@ import { CartService } from 'src/app/services/cart.service';
   template: `
     <div class="wrapper" (click)="cartService.toggleShowCart()">
       <div class="icon material-icons md-32">shopping_bag</div>
-      <span *ngIf="cartService.inCart.length > 0">{{ productsCount }}</span>
+      <span *ngIf="cartService.getCart().length > 0">{{
+        cartService.getCount()
+      }}</span>
     </div>
     <div *ngIf="cartService.show" class="cart">
-      <div class="icon material-icons close" (click)="cartService.toggleShowCart()">
+      <div
+        class="icon material-icons close"
+        (click)="cartService.toggleShowCart()"
+      >
         close
       </div>
 
-      <div class="item" *ngFor="let product of cartService.inCart">
+      <div class="item" *ngFor="let product of cartService.getCart()">
         <span class="name">{{ product.product.name }}</span>
         <span class="count">{{ product.count }} шт.</span>
         <div class="price-wrapper">
@@ -137,19 +142,15 @@ import { CartService } from 'src/app/services/cart.service';
   ],
 })
 export class CartComponent {
-  get productsCount() {
-    return this.cartService.inCart.reduce((acc, val) => acc + val.count, 0);
-  }
-
   get totalPrice() {
-    return this.cartService.inCart.reduce(
+    return this.cartService.getCart().reduce(
       (acc, val) => acc + val.product.price * val.count,
       0
     );
   }
 
   get totalPriceWithDiscount() {
-    return this.cartService.inCart.reduce(
+    return this.cartService.getCart().reduce(
       (acc, val) =>
         acc +
         (val.product.discount
