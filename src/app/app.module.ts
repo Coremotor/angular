@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ProductModule } from './product/product.module';
 import { MainModule } from 'src/app/main/main.module';
-import { DataService } from 'src/app/services/data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(localeRu, 'ru', localeRuExtra);
 
@@ -30,9 +30,9 @@ registerLocaleData(localeRu, 'ru', localeRuExtra);
     RouterModule,
     ProductModule,
     MainModule,
+    HttpClientModule,
   ],
   // providers: [{ provide: DEFAULT_CURRENCY_CODE, useValue: 'RUB' }],
-  providers: [DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

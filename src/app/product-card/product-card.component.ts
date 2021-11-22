@@ -4,8 +4,13 @@ import { TProduct } from 'src/app/types';
 @Component({
   selector: 'app-product-card',
   template: `
-    <div class="name">{{ product.name }}</div>
-    <div class="description">{{ product.description }}</div>
+    <div class="name">{{ product.title }}</div>
+    <div class="description">{{ product.company }}</div>
+
+    <img class="img" [src]="product.image" alt="pic">
+
+    <app-rating [rating]="product.rating"></app-rating>
+
     <div class="price-wrapper">
       <span class="price" [ngClass]="{ 'line-through': product.discount }">{{
         product.price | currency: 'RUB'
@@ -36,7 +41,10 @@ import { TProduct } from 'src/app/types';
   styles: [
     `
       :host {
+        width: 16%;
         min-width: 200px;
+        display: flex;
+        flex-direction: column;
         border: 1px solid black;
         padding: 20px;
         cursor: pointer;
@@ -69,6 +77,10 @@ import { TProduct } from 'src/app/types';
       }
       .line-through {
         text-decoration: line-through;
+      }
+      .img {
+        width: 200px;
+        align-self: center;
       }
     `,
   ],

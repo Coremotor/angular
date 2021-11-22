@@ -6,6 +6,7 @@ import { ToggleModule } from 'src/app/toggle/toggle.module';
 import { CartModule } from 'src/app/cart/cart.module';
 import { RouterModule } from '@angular/router';
 import { CatalogRoutingModule } from 'src/app/catalog/catalog-routing.module';
+import { SelectModule } from 'src/app/select/select.module';
 
 @NgModule({
   declarations: [CatalogComponent],
@@ -16,6 +17,7 @@ import { CatalogRoutingModule } from 'src/app/catalog/catalog-routing.module';
     CartModule,
     RouterModule,
     CatalogRoutingModule,
+    SelectModule,
   ],
   exports: [CatalogComponent],
 })

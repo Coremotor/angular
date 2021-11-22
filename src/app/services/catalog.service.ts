@@ -1,27 +1,56 @@
 import { Injectable } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
-import { ProductProperties, TProduct } from 'src/app/types';
+import { ProductProperties, TProduct, TProductFromApi } from 'src/app/types';
+import { HttpService } from 'src/app/services/http.service';
+import { HttpParams } from '@angular/common/http';
+import {ActivatedRoute} from "@angular/router";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CatalogService {
-  productsList: TProduct[] = this.dataService.getData();
+  products: TProduct[] = [];
+  filteredProductsList: TProduct[] = [];
   product?: TProduct;
 
-  getProducts(filterBy: string) {
+  filterProducts(filterBy: string) {
     if (filterBy === ProductProperties.all) {
-      this.productsList = this.dataService.getData();
+      this.filteredProductsList = this.products;
     }
     if (filterBy === ProductProperties.inStock) {
-      this.productsList = this.dataService.getData().filter((p) => p.inStock);
+      this.filteredProductsList = this.products.filter((p) => p.inStock);
     }
     if (filterBy === ProductProperties.withDiscount) {
-      this.productsList = this.dataService.getData().filter((p) => p.discount);
+      this.filteredProductsList = this.products.filter((p) => p.discount);
     }
   }
 
   getProduct(id: string) {
-    this.product = this.dataService.getData().find((p) => p.id === id);
+    this.product = this.products.find((p) => p.id === id);
   }
 
-  constructor(public dataService: DataService) {}
+  log(string?: string) {
+    console.log(string);
+  }
+
+  getProductsFromApi(sortParams?: string) {
+    const url = 'http://localhost:3000/api/products';
+    let params = new HttpParams();
+    if (sortParams && sortParams !== 'none') {
+      params = params.set('orderBy', sortParams);
+    }
+    this.httpService
+      .get<{ items: TProductFromApi[] }>(url, params)
+      .subscribe((r) => {
+        this.products = r.items.map((p) => {
+          return {
+            ...p,
+            inStock: Math.random() < 0.5,
+            discount: +Math.random().toFixed(2),
+          };
+        });
+        this.filterProducts(this.route.snapshot.queryParams['sort']);
+      });
+  }
+
+  constructor(private httpService: HttpService, private route: ActivatedRoute,) {}
 }

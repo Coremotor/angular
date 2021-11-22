@@ -19,7 +19,7 @@ import { CartService } from 'src/app/services/cart.service';
       </div>
 
       <div class="item" *ngFor="let product of cartService.getCart()">
-        <span class="name">{{ product.product.name }}</span>
+        <span class="name">{{ product.product.title }}</span>
         <span class="count">{{ product.count }} шт.</span>
         <div class="price-wrapper">
           <span *ngIf="product.product.discount" class="discount">{{
