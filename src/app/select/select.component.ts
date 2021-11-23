@@ -33,7 +33,9 @@ export class SelectComponent {
   ];
 
   sort(event: any) {
-    this.catalogService.getProductsFromApi(event.target.value);
+    this.catalogService.getProductsFromApi(false,{
+      orderBy: event.target.value === 'none' ? '' : event.target.value,
+    });
   }
 
   constructor(public catalogService: CatalogService) {}

@@ -7,6 +7,7 @@ import { CartModule } from 'src/app/cart/cart.module';
 import { RouterModule } from '@angular/router';
 import { CatalogRoutingModule } from 'src/app/catalog/catalog-routing.module';
 import { SelectModule } from 'src/app/select/select.module';
+import {PaginationModule} from "src/app/pagination/pagination.module";
 
 @NgModule({
   declarations: [CatalogComponent],
@@ -18,6 +19,7 @@ import { SelectModule } from 'src/app/select/select.module';
     RouterModule,
     CatalogRoutingModule,
     SelectModule,
+    PaginationModule,
   ],
   exports: [CatalogComponent],
 })

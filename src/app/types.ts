@@ -26,6 +26,14 @@ export type TProductFromApi = {
   title: "Pixel 4 XL 6/128GB"
 };
 
+export type TMeta = {
+  currentPage: number
+  itemCount: number
+  itemsPerPage: number
+  totalItems: number
+  totalPages: number
+}
+
 
 export type TProduct = {
   inStock: boolean;

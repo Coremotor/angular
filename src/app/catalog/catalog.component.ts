@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductProperties, TToggleButton } from 'src/app/types';
 import { buttons } from 'src/data/toggleButtons.data';
 import { ActivatedRoute } from '@angular/router';
@@ -26,6 +26,8 @@ import { CartService } from 'src/app/services/cart.service';
         [routerLink]="['/products', product.id]"
       ></app-product-card>
     </div>
+
+    <app-pagination></app-pagination>
   `,
   styles: [
     `
@@ -42,12 +44,12 @@ import { CartService } from 'src/app/services/cart.service';
     `,
   ],
 })
-export class CatalogComponent implements OnInit{
+export class CatalogComponent implements OnInit {
   toggleButtons: TToggleButton[] = buttons;
   sort: string = ProductProperties.all;
 
   ngOnInit() {
-    this.catalogService.getProductsFromApi();
+    this.catalogService.getProductsFromApi(false);
   }
 
   constructor(
